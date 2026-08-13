@@ -3,7 +3,7 @@ package school.sorokin.bank.model;
 public class Account {
     private int id;
     private int userId;
-    private int moneyAmount; // Баланс по ТЗ в int
+    private int moneyAmount;
 
     public Account(int id, int userId, int moneyAmount) {
         this.id = id;
