@@ -1,6 +1,9 @@
 package school.sorokin.bank.console;
 
+import java.util.List;
+
 public interface OperationCommand {
-    void execute();
+    String execute(CommandContext context);
     ConsoleOperationType getOperationType();
+    List<CommandParam> getRequiredParams();
 }

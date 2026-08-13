@@ -22,6 +22,10 @@ public class UserService {
         return users.get(id);
     }
 
+    public boolean hasUser(String login) {
+        return users.values().stream().anyMatch((user) -> user.getLogin().equals(login));
+    }
+
     public Map<Integer, User> getAllUsers() {
         return users;
     }

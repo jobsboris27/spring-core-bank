@@ -22,6 +22,6 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Счет №" + id + " (Баланс: " + moneyAmount + ")";
+        return "Account{id=" + id + ", userId=" + userId + ", moneyAmount=" + moneyAmount + "}";
     }
 }

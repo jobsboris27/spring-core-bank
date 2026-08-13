@@ -8,5 +8,14 @@ public enum ConsoleOperationType {
     ACCOUNT_WITHDRAW,
     ACCOUNT_TRANSFER,
     ACCOUNT_CLOSE,
-    EXIT
+    EXIT,
+    UNKNOWN;
+
+    public static ConsoleOperationType fromString(String input) {
+        try {
+            return ConsoleOperationType.valueOf(input.toUpperCase().trim());
+        } catch (IllegalArgumentException e) {
+            return UNKNOWN;
+        }
+    }
 }

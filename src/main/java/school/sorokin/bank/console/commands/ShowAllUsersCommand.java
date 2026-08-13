@@ -8,36 +8,36 @@ import school.sorokin.bank.console.OperationCommand;
 import school.sorokin.bank.service.UserService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
-public class CreateUserCommand implements OperationCommand {
+public class ShowAllUsersCommand implements OperationCommand {
     private final UserService userService;
 
-    public CreateUserCommand(UserService userService) {
+    public ShowAllUsersCommand(UserService userService) {
         this.userService = userService;
     }
 
     @Override
     public String execute(CommandContext context) {
-        var login = context.getString("login");
+        var usersMap = userService.getAllUsers();
 
-        if (userService.hasUser(login)) {
-            return "User '" + login + "' already exists";
+        if (usersMap.isEmpty()) {
+            return "No users found.";
         }
 
-        var user = userService.createUser(login);
-        return "User created: " + user;
+        return usersMap.values().stream()
+                .map(Object::toString)
+                .collect(Collectors.joining("\n"));
     }
 
     @Override
     public ConsoleOperationType getOperationType() {
-        return ConsoleOperationType.USER_CREATE;
+        return ConsoleOperationType.SHOW_ALL_USERS;
     }
 
     @Override
     public List<CommandParam> getRequiredParams() {
-        return List.of(
-            new CommandParam("login", "Enter login: ")
-        );
+        return List.of();
     }
 }

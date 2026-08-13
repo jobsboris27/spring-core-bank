@@ -29,6 +29,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "Пользователь ID: " + id + ", Логин: '" + login + "', Счета: " + accountList;
+        return "User{id=" + id + ", login='" + login + "', accounts=" + accountList + "}";
     }
 }

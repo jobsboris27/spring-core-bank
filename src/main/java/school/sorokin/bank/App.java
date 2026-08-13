@@ -1,17 +1,16 @@
 package school.sorokin.bank;
 
-//TIP Чтобы <b>запустить</b> код, нажмите <shortcut actionId="Run"/> или
-// нажмите на значок <icon src="AllIcons.Actions.Execute"/> в поле.
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import school.sorokin.bank.config.AppConfig;
+import school.sorokin.bank.console.ConsoleListener;
+
 public class App {
     public static void main(String[] args) {
-        //TIP Нажмите <shortcut actionId="ShowIntentionActions"/>, когда курсор находится на выделенном тексте
-        // чтобы увидеть, как OpenIDE предлагает это исправить.
-        System.out.printf("Hello and welcome!");
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+        ConsoleListener listener = ctx.getBean(ConsoleListener.class);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Нажмите <shortcut actionId="Debug"/>, чтобы начать отладку вашего кода. Мы установили одну <icon src="AllIcons.Debugger.Db_set_breakpoint"/> точку останова
-            // для вас, но вы всегда можете добавить больше, нажав <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        listener.start();
     }
 }
