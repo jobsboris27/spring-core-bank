@@ -3,6 +3,7 @@ package school.sorokin.bank.console.commands;
 import org.springframework.stereotype.Component;
 import school.sorokin.bank.console.*;
 import school.sorokin.bank.exception.AccountNotFoundException;
+import school.sorokin.bank.exception.ErrorMessages;
 import school.sorokin.bank.exception.InsufficientFundsException;
 import school.sorokin.bank.service.AccountService;
 
@@ -27,7 +28,7 @@ public class AccountCloseCommand implements OperationCommand {
 
             return String.format("Account %s closed. %s", result.closedAccountId(), transferInfo);
         } catch (NumberFormatException e) {
-            return "Error: Invalid number format. Please enter digits only.";
+            return ErrorMessages.INVALID_NUMBER;
         } catch (AccountNotFoundException | IllegalArgumentException e) {
             return e.getMessage();
         }

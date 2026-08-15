@@ -6,6 +6,7 @@ import school.sorokin.bank.console.CommandParam;
 import school.sorokin.bank.console.ConsoleOperationType;
 import school.sorokin.bank.console.OperationCommand;
 import school.sorokin.bank.exception.AccountNotFoundException;
+import school.sorokin.bank.exception.ErrorMessages;
 import school.sorokin.bank.service.AccountService;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class AccountDepositCommand implements OperationCommand {
 
             return String.format("Deposited %s to account %s. New balance: %s", amount, accountId, account.getMoneyAmount());
         } catch (NumberFormatException e) {
-            return "Error: Invalid number format. Please enter digits only.";
+            return ErrorMessages.INVALID_NUMBER;
         } catch (AccountNotFoundException | IllegalArgumentException e) {
             return e.getMessage();
         }

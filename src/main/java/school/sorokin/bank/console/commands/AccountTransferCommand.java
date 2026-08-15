@@ -6,6 +6,7 @@ import school.sorokin.bank.console.CommandParam;
 import school.sorokin.bank.console.ConsoleOperationType;
 import school.sorokin.bank.console.OperationCommand;
 import school.sorokin.bank.exception.AccountNotFoundException;
+import school.sorokin.bank.exception.ErrorMessages;
 import school.sorokin.bank.exception.InsufficientFundsException;
 import school.sorokin.bank.service.AccountService;
 
@@ -29,7 +30,7 @@ public class AccountTransferCommand implements OperationCommand {
 
             return String.format("Transfer completed from account %s to account %s. New balance: %s", fromAccountId, toAccountId, account.getMoneyAmount());
         } catch (NumberFormatException e) {
-            return "Error: Invalid number format. Please enter digits only.";
+            return ErrorMessages.INVALID_NUMBER;
         } catch (AccountNotFoundException | InsufficientFundsException | IllegalArgumentException e) {
             return e.getMessage();
         }

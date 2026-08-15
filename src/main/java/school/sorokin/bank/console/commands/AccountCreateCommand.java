@@ -5,6 +5,7 @@ import school.sorokin.bank.console.CommandContext;
 import school.sorokin.bank.console.CommandParam;
 import school.sorokin.bank.console.ConsoleOperationType;
 import school.sorokin.bank.console.OperationCommand;
+import school.sorokin.bank.exception.ErrorMessages;
 import school.sorokin.bank.service.AccountService;
 import school.sorokin.bank.service.UserService;
 
@@ -29,7 +30,7 @@ public class AccountCreateCommand implements OperationCommand {
 
             return String.format("Account created. %s", account);
         } catch (NumberFormatException e) {
-            return "Error: Invalid number format. Please enter digits only.";
+            return ErrorMessages.INVALID_NUMBER;
         } catch (IllegalArgumentException e) {
             return e.getMessage();
         }
