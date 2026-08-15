@@ -26,7 +26,8 @@ public class AccountTransferCommand implements OperationCommand {
             var toAccountId = context.getInt("toAccountId");
             var amount = context.getInt("amount");
             var account = accountService.transfer(fromAccountId, toAccountId, amount);
-            return "Transfer completed from account " + fromAccountId + " to account " + toAccountId + ". New balance: " + account.getMoneyAmount();
+
+            return String.format("Transfer completed from account %s to account %s. New balance: %s", fromAccountId, toAccountId, account.getMoneyAmount());
         } catch (NumberFormatException e) {
             return "Error: Invalid number format. Please enter digits only.";
         } catch (AccountNotFoundException | InsufficientFundsException | IllegalArgumentException e) {

@@ -26,9 +26,8 @@ public class AccountCreateCommand implements OperationCommand {
         try {
             var userId = context.getInt("userId");
             var account = accountService.createAccount(userId);
-            System.out.println("DEBUG: User list in DB after create account: " + userService.getUserById(userId).getAccountList());
 
-            return "Account created: " + account;
+            return String.format("Account created. %s", account);
         } catch (NumberFormatException e) {
             return "Error: Invalid number format. Please enter digits only.";
         } catch (IllegalArgumentException e) {

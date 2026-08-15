@@ -25,7 +25,8 @@ public class AccountWithdrawCommand implements OperationCommand {
             var accountId = context.getInt("accountId");
             var amount = context.getInt("amount");
             var account = accountService.withdraw(accountId, amount);
-            return "Withdrew " + amount + " from account " + accountId + ". New balance: " + account.getMoneyAmount();
+
+            return String.format("Withdrew %s from account %s. New balance: %s", amount, accountId, account.getMoneyAmount());
         } catch (NumberFormatException e) {
             return "Error: Invalid number format. Please enter digits only.";
         } catch (AccountNotFoundException | InsufficientFundsException | IllegalArgumentException e) {

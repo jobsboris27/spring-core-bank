@@ -2,10 +2,8 @@ package school.sorokin.bank.console;
 
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class ConsoleListener {
@@ -24,10 +22,14 @@ public class ConsoleListener {
 
     private void listenConsoleInput() {
         Scanner scanner = new Scanner(System.in);
+        String availableCommands = Arrays.stream(ConsoleOperationType.values())
+                .filter(op -> op != ConsoleOperationType.UNKNOWN) // убираем UNKNOWN
+                .map(Enum::name)                                  // преобразуем в строки
+                .collect(Collectors.joining(", "));
+
         System.out.println("MiniBank started.");
         System.out.println("Type EXIT to stop.");
-        System.out.println("Available commands: USER_CREATE, SHOW_ALL_USERS, ACCOUNT_CREATE,\n" +
-                "ACCOUNT_DEPOSIT, ACCOUNT_WITHDRAW, ACCOUNT_TRANSFER, ACCOUNT_CLOSE, EXIT");
+        System.out.printf("Available commands: %s%n", availableCommands);
 
         while(true) {
             System.out.print("\nEnter command: ");

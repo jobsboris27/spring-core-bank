@@ -22,11 +22,12 @@ public class CreateUserCommand implements OperationCommand {
         var login = context.getString("login");
 
         if (userService.hasUser(login)) {
-            return "User '" + login + "' already exists";
+            return String.format("User '%s' already exists", login);
         }
 
         var user = userService.createUser(login);
-        return "User created: " + user;
+
+        return String.format("User created: %s", user);
     }
 
     @Override

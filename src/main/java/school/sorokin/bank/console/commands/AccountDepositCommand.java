@@ -24,7 +24,8 @@ public class AccountDepositCommand implements OperationCommand {
             var accountId = context.getInt("accountId");
             var amount = context.getInt("amount");
             var account = accountService.deposit(accountId, amount);
-            return "Deposited " + amount + " to account " + accountId + ". New balance: " + account.getMoneyAmount();
+
+            return String.format("Deposited %s to account %s. New balance: %s", amount, accountId, account.getMoneyAmount());
         } catch (NumberFormatException e) {
             return "Error: Invalid number format. Please enter digits only.";
         } catch (AccountNotFoundException | IllegalArgumentException e) {

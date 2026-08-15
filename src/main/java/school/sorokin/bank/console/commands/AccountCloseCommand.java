@@ -25,7 +25,7 @@ public class AccountCloseCommand implements OperationCommand {
                     ? "Remaining balance " + result.remainingBalance() + " transferred to account " + result.targetAccountId() + "."
                     : "No other accounts to transfer remaining balance.";
 
-            return "Account " + result.closedAccountId() + " closed. " + transferInfo;
+            return String.format("Account %s closed. %s", result.closedAccountId(), transferInfo);
         } catch (NumberFormatException e) {
             return "Error: Invalid number format. Please enter digits only.";
         } catch (AccountNotFoundException | IllegalArgumentException e) {
